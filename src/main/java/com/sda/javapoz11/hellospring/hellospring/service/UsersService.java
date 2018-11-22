@@ -13,8 +13,14 @@ import java.util.List;
 @Service
 public class UsersService {
 
-    @Autowired
+
     private UsersRepository usersRepository;
+
+    @Autowired
+    public UsersService (UsersRepository usersRepository){
+        this.usersRepository = usersRepository;
+
+    }
 
 
     public User findById (long id) {
