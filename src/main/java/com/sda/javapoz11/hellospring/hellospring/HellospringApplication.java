@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class HellospringApplication {
@@ -15,14 +16,23 @@ public class HellospringApplication {
 		SpringApplication.run(HellospringApplication.class, args);
 	}
 
-	@Primary
+
 	@Bean
 	public RandomGenerator smallNumbersGenerator (){
 		return new SmallNumberGenerator();
 	}
 
+	@Profile("!prod")
+	@Primary
 	@Bean
 	public RandomGenerator bigNumbersGenerator (){
+		return new BigNumbersGenerator();
+	}
+
+	@Profile("prod")
+	@Primary
+	@Bean
+	public RandomGenerator myBigNumberGenerator (){
 		return new BigNumbersGenerator();
 	}
 }
