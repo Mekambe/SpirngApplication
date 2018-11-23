@@ -11,12 +11,12 @@ import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
-@Profile("!prod")
+//@Profile("!prod")
 @Service
 public class UsersService {
 
 
-    private UsersRepository usersRepository;
+   private UsersRepository usersRepository;
 
     @Autowired
     public UsersService (UsersRepository usersRepository){
@@ -26,8 +26,8 @@ public class UsersService {
 
 
     public User findById (long id) {
-return usersRepository.findById(id) //wzielo sie z cruda
-        .orElse(null);
+        return usersRepository.findById(id) //wzielo sie z cruda
+                .orElse(null);
     }
 
     public List<User> findAll(){
